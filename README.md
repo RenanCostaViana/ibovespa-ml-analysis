@@ -1,4 +1,4 @@
-📈 Ibovespa ML Analysis — Market Data Analytics
+#📈 Ibovespa ML Analysis — Market Data Analytics
 
 Análise do mercado financeiro brasileiro utilizando Machine Learning  
 Projeto de análise exploratória e experimentação preditiva com dados históricos do Ibovespa
