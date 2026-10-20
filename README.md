@@ -42,7 +42,9 @@ O foco do projeto é **analítico e educacional**, buscando compreender o compor
 
 4. **Modelagem**
    - Comparação de modelos estatísticos (Naive, SeasonalNaive, SeasonalWindowAverage, AutoARIMA) e do Prophet
-   - Avaliação de erro (WMAPE) e de acurácia direcional (acerto de alta/baixa do dia seguinte)
+   - Avaliação de erro (WMAPE) e de acurácia direcional (acerto da alta ou baixa de cada dia em relação ao dia anterior)
+   - **Desenho do teste:** os modelos são treinados até o início do período de teste e preveem os ~30 pregões finais **de uma só vez** (horizonte de vários passos), sem serem reajustados com os fechamentos reais ao longo do período. A direção prevista para cada dia compara a previsão daquele dia com a previsão do dia anterior (ou com o último fechamento real, no primeiro dia).
+   - Esse desenho é mais exigente do que uma previsão estritamente de um dia à frente (*walk-forward*), em que o modelo conheceria o fechamento real da véspera antes de cada previsão — os resultados de acurácia devem ser lidos sob essa ótica.
 
 5. **Interpretação Crítica dos Resultados**
    - Discussão sobre ruído, não estacionariedade e limites preditivos
@@ -77,6 +79,8 @@ O foco do projeto é **analítico e educacional**, buscando compreender o compor
 
 - O modelo não considera fatores externos (macroeconomia, notícias, eventos)
 - Resultados são sensíveis ao período analisado
+- A avaliação usa um único horizonte de ~30 pregões previstos de uma vez; uma validação *walk-forward* (previsão dia a dia, reajustando o modelo) daria uma leitura mais fiel da previsão de curtíssimo prazo
+- Com apenas ~30 observações no teste, diferenças de poucos pontos percentuais de acurácia estão dentro da margem de erro
 - O projeto não foi desenvolvido para uso operacional ou decisões reais
 - Machine Learning é tratado como **ferramenta de análise**, não como solução definitiva
 
